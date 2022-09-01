@@ -1,8 +1,9 @@
 name: JianDaoYun Clock in
 
-on: workflow_dispatch
-  # schedule:
-  #   - cron: '0 6 * * *'
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '10 6 * * *'
 
 jobs:
   clock-in:
