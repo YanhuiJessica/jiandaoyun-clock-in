@@ -42,8 +42,9 @@ for r in driver.requests:
 driver.close()
 
 data = json.loads(os.getenv('FORM_DATA'))
-today = datetime.now().isoformat().split('T')[0]
+today = datetime.now().strftime('%Y-%m-%d')
 timestamp = f'{int(datetime.fromisoformat(today).timestamp())}000'
+today = '{d.year}-{d.month}-{d.day}'.format(d=datetime.now())
 
 base = data['values']['_widget_1581259263913']['data'].split('-')[-3:]
 data['values']['_widget_1581259263913']['data'] = f'{today}-{"-".join(base)}'
