@@ -43,8 +43,8 @@ driver.close()
 
 data = json.loads(os.getenv('FORM_DATA'))
 today = datetime.now().strftime('%Y-%m-%d')
-timestamp = f'{int(datetime.fromisoformat(today).timestamp())}000'
-today = '{d.year}-{d.month}-{d.day}'.format(d=datetime.now())
+timestamp = int(f'{int(datetime.fromisoformat(today).timestamp())}000')
+# today = '{d.year}-{d.month}-{d.day}'.format(d=datetime.now())
 
 base = data['values']['_widget_1581259263913']['data'].split('-')[-3:]
 data['values']['_widget_1581259263913']['data'] = f'{today}-{"-".join(base)}'
@@ -52,6 +52,6 @@ data['values']['_widget_1597486309838']['data'][0]['_widget_1646815571409']['dat
 data['values']['_widget_1581259263910']['data'] = timestamp
 data['values']['_widget_1597486309838']['data'][0]['_widget_1646814426533']['data'] = timestamp
 
-ret = requests.post('https://www.jiandaoyun.com/_/data/create', headers=headers, data=json.dumps(data))
+ret = requests.post('https://www.jiandaoyun.com/_/data/create', headers=headers, data=json.dumps(data).replace(' ', ''))
 if ret.status_code != 200:
     logging.error(json.loads(ret.text)['msg'])
