@@ -53,5 +53,5 @@ data['values']['_widget_1581259263910']['data'] = timestamp
 data['values']['_widget_1597486309838']['data'][0]['_widget_1646814426533']['data'] = timestamp
 
 ret = requests.post('https://www.jiandaoyun.com/_/data/create', headers=headers, data=json.dumps(data))
-if '今日健康日报数据提交成功' not in ret.text:
+if ret.status_code != 200:
     logging.error(json.loads(ret.text)['msg'])
