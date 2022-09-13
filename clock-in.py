@@ -16,7 +16,7 @@ headers = {
     'referer': 'https://www.jiandaoyun.com/dashboard'
 }
 
-chrome_service = Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install())
+chrome_service = Service(ChromeDriverManager().install())
 
 options = webdriver.ChromeOptions()
 options.add_argument('--headless')
