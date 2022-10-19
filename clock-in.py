@@ -53,15 +53,13 @@ data['values']['_widget_1597486309838']['data'][0]['_widget_1646814426533']['dat
 
 start_date = os.getenv('START_DATE')
 if start_date:
-    start_date = datetime.fromisoformat(start_date)
-    days = (datetime.now() - start_date).days
-else: days = 1
-if days % 3 == 0:
-    data['values']['_widget_1661251622874']['data'] = '是'
-    data['values']['_widget_1661251622908']['data'] = '未出结果'
-else:
-    data['values']['_widget_1661251622874']['data'] = '否'
-    data['values']['_widget_1661251622908']['data'] = '已出结果，阴性'
+    days = (datetime.now() - datetime.fromisoformat(start_date)).days
+    if days % 3 == 0:
+        data['values']['_widget_1661251622874']['data'] = '是'
+        data['values']['_widget_1661251622908']['data'] = '未出结果'
+    else:
+        data['values']['_widget_1661251622874']['data'] = '否'
+        data['values']['_widget_1661251622908']['data'] = '已出结果，阴性'
 
 ret = requests.post('https://www.jiandaoyun.com/_/data_process/data/create', headers=headers, data=json.dumps(data).replace(' ', ''))
 if ret.status_code != 200:
