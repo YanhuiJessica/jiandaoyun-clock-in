@@ -63,4 +63,7 @@ if start_date:
 
 ret = requests.post('https://www.jiandaoyun.com/_/data_process/data/create', headers=headers, data=json.dumps(data).replace(' ', ''))
 if ret.status_code != 200:
-    logging.error(json.loads(ret.text)['msg'])
+    err = json.loads(ret.text)['msg']
+    if '提交值重复' not in err:
+        logging.error(err)
+        exit(1)
