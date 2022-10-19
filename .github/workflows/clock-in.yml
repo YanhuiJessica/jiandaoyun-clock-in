@@ -23,4 +23,5 @@ jobs:
           SCHOOL_NUM: ${{ secrets.SCHOOL_NUM }}
           PASSWORD: ${{ secrets.PASSWORD }}
           FORM_DATA: ${{ secrets.FORM_DATA }}
+          START_DATE: ${{ secrets.START_DATE }}
         run: python clock-in.py

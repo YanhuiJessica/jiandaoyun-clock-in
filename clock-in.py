@@ -1,6 +1,5 @@
 from seleniumwire import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
-from webdriver_manager.core.utils import ChromeType
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from time import sleep
@@ -51,6 +50,18 @@ data['values']['_widget_1581259263913']['data'] = f'{today}-{"-".join(base)}'
 data['values']['_widget_1597486309838']['data'][0]['_widget_1646815571409']['data'] = f'{today}-{school_num}'
 data['values']['_widget_1581259263910']['data'] = timestamp
 data['values']['_widget_1597486309838']['data'][0]['_widget_1646814426533']['data'] = timestamp
+
+start_date = os.getenv('START_DATE')
+if start_date:
+    start_date = datetime.fromisoformat(start_date)
+    days = (datetime.now() - start_date).days
+else: days = 1
+if days % 3 == 0:
+    data['values']['_widget_1661251622874']['data'] = '是'
+    data['values']['_widget_1661251622908']['data'] = '未出结果'
+else:
+    data['values']['_widget_1661251622874']['data'] = '否'
+    data['values']['_widget_1661251622908']['data'] = '已出结果，阴性'
 
 ret = requests.post('https://www.jiandaoyun.com/_/data_process/data/create', headers=headers, data=json.dumps(data).replace(' ', ''))
 if ret.status_code != 200:
