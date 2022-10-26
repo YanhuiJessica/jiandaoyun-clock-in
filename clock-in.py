@@ -1,5 +1,5 @@
 from seleniumwire import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
+import chromedriver_autoinstaller
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from time import sleep
@@ -15,7 +15,7 @@ headers = {
     'referer': 'https://www.jiandaoyun.com/dashboard'
 }
 
-chrome_service = Service(ChromeDriverManager().install())
+chrome_service = Service(chromedriver_autoinstaller.install())
 
 options = webdriver.ChromeOptions()
 options.add_argument('--headless')
