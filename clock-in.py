@@ -47,9 +47,9 @@ today = '{d.year}-{d.month}-{d.day}'.format(d=datetime.now())
 
 base = data['values']['_widget_1581259263913']['data'].split('-')[-3:]
 data['values']['_widget_1581259263913']['data'] = f'{today}-{"-".join(base)}'
-data['values']['_widget_1597486309838']['data'][0]['_widget_1646815571409']['data'] = f'{today}-{school_num}'
+# data['values']['_widget_1597486309838']['data'][0]['_widget_1646815571409']['data'] = f'{today}-{school_num}'
 data['values']['_widget_1581259263910']['data'] = timestamp
-data['values']['_widget_1597486309838']['data'][0]['_widget_1646814426533']['data'] = timestamp
+# data['values']['_widget_1597486309838']['data'][0]['_widget_1646814426533']['data'] = timestamp
 
 start_date = os.getenv('START_DATE')
 if start_date:
